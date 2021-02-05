@@ -44,35 +44,9 @@ include(Variables)
 
 set(NLS_ENGINE_BUILD_MODE 1)
 
-## Setup compilation
-
-add_definitions(-DBOOST_ALL_NO_LIB) # Disable the use of the Boost auto-linker commands, as we are providing our own direct linkages.
-if(LINUX OR DARWIN)
-	if(CMAKE_COMPILER_IS_GNUCXX)
-		#add_definitions(-DAS_MAX_PORTABILITY)
-		
-		if(NOT COMPILER_VERSION VERSION_LESS 4.7) # version 4.7.0 or newer
-			add_definitions(-std=gnu++11)
-		elseif(NOT COMPILER_VERSION VERSION_LESS 4.4) # version 4.4.0 or newer, if not handled above already
-			add_definitions(-std=gnu++0x -include "\"${NLS_ENGINE_ROOT}/include/nullptr.h\"")
-		elseif(NOT COMPILER_VERSION VERSION_LESS 4.2) # version 4.2.0 or newer, if not handled above already
-			add_definitions(-include "\"${NLS_ENGINE_ROOT}/include/nullptr.h\"")
-		endif(NOT COMPILER_VERSION VERSION_LESS 4.7)
-	elseif(CMAKE_CXX_COMPILER_ID MATCHES "[Cc]lang")
-		add_definitions(-std=c++11 -stdlib=libc++) # If you change -std or -stdlib, make sure to change /cmake/GetBoost.cmake
-		add_definitions(-DGLM_FORCE_CXX11)
-	else(CMAKE_COMPILER_IS_GNUCXX)
-		message(FATAL_ERROR "Unknown Compiler '${CMAKE_CXX_COMPILER_ID}' at version ${COMPILER_VERSION}")
-	endif(CMAKE_COMPILER_IS_GNUCXX)
-endif(LINUX OR DARWIN)
-
-
-
 # Load up libraries
 include(GetAngelScript)
 include(GetGLM)
-include(GetBoost)
-
 
 ## Configure a header file to pass some of the CMake settings to the source code
 configure_file (
@@ -94,16 +68,6 @@ else(AngelScript_FOUND)
 	# AngelScript was not found, cease processing
 	message(FATAL_ERROR "Cannot continue without AngelScript.")
 endif(AngelScript_FOUND)
-
-
-## Go find Boost
-if(Boost_FOUND)
-	message("Including Boost")
-	include_directories(${Boost_INCLUDE_DIRS})
-else(Boost_FOUND)
-	# Boost was not found, cease processing
-	message(FATAL_ERROR "Cannot continue without Boost.")
-endif(Boost_FOUND)
 
 
 ## Include GLM

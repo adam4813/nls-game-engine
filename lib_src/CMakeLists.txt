@@ -3,9 +3,8 @@
 # The name of our project is "NLS_ENGINE". CMakeLists files in this project can 
 # refer to the root source directory of the project as ${NLS_ENGINE_SOURCE_DIR} and 
 # to the root binary directory of the project as ${NLS_ENGINE_BINARY_DIR}. 
-cmake_minimum_required(VERSION 2.8.7) 
+cmake_minimum_required(VERSION 3.1) 
 project(NLS_ENGINE) 
-
 
 if(NOT DEFINED NLS_ENGINE_ROOT) # This directory was called directly
 	set(NLS_ENGINE_ROOT "${CMAKE_SOURCE_DIR}/..")
@@ -29,6 +28,6 @@ set(NLS_ENGINE_LIBRARY_MODE 1)
 	
 	# Load up libraries
 	include(GetAngelScript)
+	find_package(Angelscript)
 	include(GetGLM)
-	include(GetBoost)
 ## /Load libraries

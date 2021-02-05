@@ -1,0 +1,45 @@
+{
+    "NLS_SD_1_0_0":
+    {
+        "message_id": "0",
+        "data":
+        {
+            "item0":
+            {
+                "string": "WindowTitle"
+            },
+            "item1":
+            {
+                "string": "Game"
+            },
+            "item2":
+            {
+                "string": "WindowSize"
+            },
+            "item3":
+            {
+                "unsigned int": "1024"
+            },
+            "item4":
+            {
+                "unsigned int": "768"
+            },
+            "item5":
+            {
+                "string": "LogFile"
+            },
+            "item6":
+            {
+                "string": "Game.log"
+            },
+            "item7":
+            {
+                "string": "UserGameFolder"
+            },
+            "item8":
+            {
+                "string": "NLS Game"
+            }
+        }
+    }
+}
